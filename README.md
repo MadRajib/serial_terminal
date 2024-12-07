@@ -1,5 +1,7 @@
 # serial_terminal
-A terminal for micro-controllers 
+A terminal for micro-controllers.
+
+Include **serial_prompt.h** header file in your project to use it.
 
 * Step 1
   Replace with the serial print/write function, here I have taken
