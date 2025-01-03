@@ -1,6 +1,8 @@
 #ifndef _SERIAL_PORMPT_H
 #define _SERIAL_PORMPT_H
+#include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define MAX_CLI_TEXT 80
 #define MAX_WORDS 06
@@ -15,13 +17,29 @@ typedef int (*cmd_handler_t)(int argc, char **argv);
 
 typedef struct {
   char *name;
+  char *description;
   cmd_handler_t handler;
 } cmd_t;
 
 extern cmd_t commands[];
 extern int commands_count;
 
+static inline void print_help() {
+  for (int i = 0; i < commands_count; ++i) {
+    PRINT(commands[i].name);
+    PRINT(" : ");
+    PRINT(commands[i].description);
+    PRINT("\n");
+  }
+}
+
 static inline int find(char *cmd) {
+
+  if (!strcmp(cmd, "?")) {
+    print_help();
+    return -1;
+  }
+
   for (int i = 0; i < commands_count; ++i) {
     if (!strcmp(cmd, commands[i].name)) {
       return i;
@@ -46,32 +64,34 @@ static inline int tokenize() {
 }
 
 static inline int read_unitl(char ch) {
-  int c;
+  int c = 0;
+  char str[] = {'\0', '\0'};
   /* timeout inside while to preserve non blocking */
   int cnt = 100;
 
   while ((c = READ()) > 0 && cnt > 0) {
     --cnt;
+    str[0] = (char)c;
 
-    Serial.print((char)c);
+    PRINT(str);
 
     if (cli_buf_index > MAX_CLI_TEXT - 1) {
 
       /* Drop  the buffer quitely if delim is reached */
-      if (c == ch) {
+      if (str[0] == ch) {
         cli_buf_index = 0;
         return 0;
       }
       continue;
     }
 
-    if (c == ch) {
+    if (str[0] == ch) {
       cli_buf[cli_buf_index] = '\0';
       cli_buf_index = 0;
       return 1;
     }
 
-    cli_buf[cli_buf_index++] = c;
+    cli_buf[cli_buf_index++] = str[0];
   }
 
   return 0;
@@ -79,8 +99,8 @@ static inline int read_unitl(char ch) {
 
 static inline void serial_greet(void) {
   PRINT("Hello from Serial Prompt\n"
-               "Type 'help' for list of commands\n"
-               "> ");
+        "Type '?' for help\n"
+        "> ");
 }
 
 static inline void serial_run(void) {
