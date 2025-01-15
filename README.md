@@ -1,5 +1,6 @@
 # serial_terminal
 A terminal for micro-controllers.
+
 Hackster.io blog : https://www.hackster.io/Madrajib/a-command-prompt-for-your-microcontroller-da8cf1
 
 Include **serial_prompt.h** header file in your project to use it.
