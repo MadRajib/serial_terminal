@@ -50,7 +50,7 @@ Include **serial_prompt.h** header file in your project to use it.
   Type '?' for help
   >
   ```
-  If you type "*" you should see the list of cmd available
+  If you type "?" you should see the list of cmd available
   ```bash
   > ?
   sample : sample cmd description
