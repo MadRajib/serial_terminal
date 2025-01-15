@@ -18,25 +18,21 @@ Include **serial_prompt.h** header file in your project to use it.
   #include "serial_prompt.h"
   ```
 * Step 3
-  Add your cmd handlers
+  Add your cmd handlers,
   Note: command handler should has
   **int <handle_name>(int argc, char **argv)** definations.
   ```c
-  int help(int argc, char **argv)
+  int sample(int argc, char **argv)
   {
-      Serial.println("Serial console commands:");
-      Serial.println("");
-      Serial.println("help  -> this help");
-      Serial.println("");
-      
+      Serial.println("This is sample cmd");
       return 0;
   }
   ```
 * Step 4
-  Add command name and its handler to commands array
+  Add command nam, description and its handler to commands array
   ```c
   cmd_t commands[] = {
-    {"help", help}
+    {"sample", "sample cmd description", sample}
   };
   /* keep this as it is */
   int commands_count = sizeof(commands)/ sizeof(cmd_t);
@@ -47,4 +43,15 @@ Include **serial_prompt.h** header file in your project to use it.
   void loop() {
     serial_run();
   }
+  ```
+* Step 6 Flash the firmware to the device, you should see following ouput
+  ```bash
+  Hello from Serial Prompt
+  Type '?' for help
+  >
+  ```
+  If you type "*" you should see the list of cmd available
+  ```bash
+  > ?
+  sample : sample cmd description
   ```
