@@ -3,6 +3,15 @@ A terminal for micro-controllers.
 
 Hackster.io blog : https://www.hackster.io/Madrajib/a-command-prompt-for-your-microcontroller-da8cf1
 
+Directory structure:
+└── madrajib-serial_terminal/
+    ├── README.md
+    ├── LICENSE
+    ├── linux_main.c              -> use to run in linux shell
+    ├── main.cpp                  -> use to run in Arduino/ESP32
+    ├── rasspberry_pico_main.c    -> use to run in raspbery pi pico
+    └── serial_prompt.h           -> main library
+
 Include **serial_prompt.h** header file in your project to use it.
 
 * Step 1
