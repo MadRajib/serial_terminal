@@ -7,6 +7,10 @@
 #define MAX_CLI_TEXT 80
 #define MAX_WORDS 06
 
+#define COMMANDS(...)   \
+  const cmd_t commands[] = {__VA_ARGS__};\
+  const size_t commands_count = sizeof(commands) / sizeof(commands[0])
+
 static char cli_buf[MAX_CLI_TEXT] = {0};
 static unsigned int cli_buf_index = 0;
 
@@ -21,8 +25,8 @@ typedef struct {
   cmd_handler_t handler;
 } cmd_t;
 
-extern cmd_t commands[];
-extern int commands_count;
+extern const cmd_t commands[];
+extern const size_t commands_count;
 
 static inline void print_help() {
   for (int i = 0; i < commands_count; ++i) {

@@ -26,16 +26,28 @@ int help(int argc, char **argv)
     return 0;
 }
 
+int multiply_handler(int argc, char **argv) {
+  if (argc < 3) {
+    Serial.println("mult num1 num2");
+    return 0;
+  }
+
+  int num1 = atoi(argv[1]);
+  int num2 = atoi(argv[2]);
+
+  Serial.println(num1 * num2)
+
+  return 0;
+}
+
 /* Step 4
-* Add command name and its handler
+* Add command name, description and its handler
 * to commands array
 */
-cmd_t commands[] = {
-  {"help", help}
-};
-
-/* keep this as it is */
-int commands_count = sizeof(commands)/ sizeof(cmd_t);
+COMMANDS(
+    {"print", "print func", print_handler},
+    {"mult", "mult num1 num2", multiply_handler}
+);
 
 void setup() {
   Serial.begin(115200);

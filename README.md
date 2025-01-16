@@ -33,11 +33,9 @@ Include **serial_prompt.h** header file in your project to use it.
 * Step 4
   Add command nam, description and its handler to commands array
   ```c
-  cmd_t commands[] = {
-    {"sample", "sample cmd description", sample}
-  };
-  /* keep this as it is */
-  int commands_count = sizeof(commands)/ sizeof(cmd_t);
+  COMMANDS(
+    {"sample", "sample func", sample}
+  );
   ```
 * Step 5
   Call it periodically
@@ -86,10 +84,10 @@ int multiply_handler(int argc, char **argv) {
   return 0;
 }
 
-cmd_t commands[] = {
-  {"sample", "sample cmd description", sample},
-  {"mult", "mult num1 num2", multiply_handler},
-};
+COMMANDS(
+  {"sample", "sample func", sample},
+  {"mult", "mult num1 num2", multiply_handler}
+);
 
 ```
 ```bash
