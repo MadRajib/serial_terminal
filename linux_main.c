@@ -36,12 +36,10 @@ int multiply_handler(int argc, char **argv) {
   return 0;
 }
 
-cmd_t commands[] = {
+COMMANDS(
     {"print", "print func", print_handler},
-    {"mult", "mult num1 num2", multiply_handler},
-};
-
-int commands_count = sizeof(commands) / sizeof(cmd_t);
+    {"mult", "mult num1 num2", multiply_handler}
+);
 
 struct termios original_tio;
 
