@@ -6,6 +6,9 @@
 
 #define MAX_CLI_TEXT 80
 #define MAX_WORDS 06
+#define BACKSPACE_CHAR 0x08
+#define END_OF_STR_CHAR '\0'
+#define HELP_STR "?"
 
 #define COMMANDS(...)   \
   const cmd_t commands[] = {__VA_ARGS__};\
@@ -39,7 +42,7 @@ static inline void print_help() {
 
 static inline int find(char *cmd) {
 
-  if (!strcmp(cmd, "?")) {
+  if (!strcmp(cmd, HELP_STR)) {
     print_help();
     return -1;
   }
@@ -69,13 +72,23 @@ static inline int tokenize() {
 
 static inline int read_unitl(char ch) {
   int c = 0;
-  char str[] = {'\0', '\0'};
+  char str[] = {END_OF_STR_CHAR, END_OF_STR_CHAR};
   /* timeout inside while to preserve non blocking */
   int cnt = 100;
 
   while ((c = READ()) > 0 && cnt > 0) {
     --cnt;
     str[0] = (char)c;
+
+    /* Handle backspace */
+    if (str[0] == BACKSPACE_CHAR) {
+      
+      if (cli_buf_index) {
+        PRINT("\b \b");
+        cli_buf_index--;
+      }
+      continue;
+    }
 
     PRINT(str);
 
@@ -90,7 +103,7 @@ static inline int read_unitl(char ch) {
     }
 
     if (str[0] == ch) {
-      cli_buf[cli_buf_index] = '\0';
+      cli_buf[cli_buf_index] = END_OF_STR_CHAR;
       cli_buf_index = 0;
       return 1;
     }
