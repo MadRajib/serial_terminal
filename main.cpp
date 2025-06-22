@@ -16,15 +16,6 @@
 * int <handle_name>(int argc, char **argv)
 * definations.
 */
-int help(int argc, char **argv)
-{
-    Serial.println("Serial console commands:");
-    Serial.println("");
-    Serial.println("help  -> this help");
-    Serial.println("");
-    
-    return 0;
-}
 
 int multiply_handler(int argc, char **argv) {
   if (argc < 3) {
@@ -35,7 +26,7 @@ int multiply_handler(int argc, char **argv) {
   int num1 = atoi(argv[1]);
   int num2 = atoi(argv[2]);
 
-  Serial.println(num1 * num2)
+  Serial.println(num1 * num2);
 
   return 0;
 }
@@ -45,7 +36,6 @@ int multiply_handler(int argc, char **argv) {
 * to commands array
 */
 COMMANDS(
-    {"print", "print func", print_handler},
     {"mult", "mult num1 num2", multiply_handler}
 );
 
