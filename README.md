@@ -1,7 +1,8 @@
 # serial_terminal
 A terminal for micro-controllers.
 
-Hackster.io blog : https://www.hackster.io/Madrajib/a-command-prompt-for-your-microcontroller-da8cf1
+[Watch On Youtube ](https://youtu.be/DpFmoua0rZ8?si=selNsn8JtBRXRExw) \\
+[Read blog Hackster.io](https://www.hackster.io/Madrajib/a-command-prompt-for-your-microcontroller-da8cf1)
 
 ### Directory structure:
 ```bash
