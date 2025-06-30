@@ -116,3 +116,7 @@ mult : mult num1 num2
 >
 
 ```
+### Features
+ * Handles backspace
+ * Handles delete
+ * Handles backspace/delete with combination with left and right arrow keys.
