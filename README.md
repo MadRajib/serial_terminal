@@ -4,6 +4,9 @@ A terminal for micro-controllers.
 [Watch On Youtube ](https://youtu.be/DpFmoua0rZ8?si=selNsn8JtBRXRExw) \\
 [Read blog Hackster.io](https://www.hackster.io/Madrajib/a-command-prompt-for-your-microcontroller-da8cf1)
 
+## DEMO
+![CYD-Klipper](./assets/demo.gif)
+
 ### Directory structure:
 ```bash
 
@@ -117,6 +120,9 @@ mult : mult num1 num2
 
 ```
 ### Features
- * Handles backspace
- * Handles delete
- * Handles backspace/delete with combination with left and right arrow keys.
+ 1. Handles backspace
+ 2. Handles delete 
+ 3. Handles backspace/delete with combination with left and right arrow keys.
+
+Contriubted the above features 2 & 3 to [CYD-Klipper firmware](https://github.com/suchmememanyskill/CYD-Klipper)
+  >  [serial_console: Add support to handle delete/arrow keys by @MadRajib in #195](https://github.com/suchmememanyskill/CYD-Klipper/pull/195)
