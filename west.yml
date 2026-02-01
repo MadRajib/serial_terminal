@@ -1,0 +1,20 @@
+manifest:
+
+  defaults:
+    remote: zephyrproject
+
+  remotes:
+    - name: zephyrproject
+      url-base: https://github.com/zephyrproject-rtos
+    
+    - name: madrajib
+      url-base: https://github.com/MadRajib
+
+  projects:
+    - name: zephyr
+      remote: zephyrproject
+      revision: main
+      import: true
+
+  self:
+    path: serial_terminal

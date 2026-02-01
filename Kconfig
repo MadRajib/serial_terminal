@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: MIT
+# Serial Terminal Configuration
+
+menuconfig SERIAL_TERMINAL
+	bool "Serial Terminal Library"
+	default n
+	help
+	  Enable the lightweight serial terminal library for
+	  command-line interface on microcontrollers.
+	  
+	  This is a header-only library that provides a simple
+	  command-line interface with argument parsing.
+
+if SERIAL_TERMINAL
+
+config SERIAL_TERMINAL_MAX_CMD_LEN
+	int "Maximum command length"
+	default 128
+	range 32 512
+	help
+	  Maximum length of a single command line.
+
+config SERIAL_TERMINAL_MAX_ARGS
+	int "Maximum number of arguments"
+	default 16
+	range 4 64
+	help
+	  Maximum number of command-line arguments.
+
+endif # SERIAL_TERMINAL
